@@ -8,7 +8,64 @@ const container = document.querySelector('.team-container');
 
 const addBtn = document.getElementById('addMemberButton');
 
+/*****************INIZIO DEFINIZIONE FUNZIONI****************/
+
+// Creo una funzione per generare una CARD, dentro cui verranno inseriti 
+// gli altri elementi per completare il contenuto della card.
+
+function mainCardGenerator(element) {
+    container.appendChild(element);
+    element.classList.add('team-card');
+}
+
+// Creo una funzione per leggere il contenuto degli elementi nell'array
+// e aggiunmgere SOLO LE IMMAGINI alle card da generare.
+
+function imageGenerator(index, element) {
+    let image = document.createElement('div');
+    element.appendChild(image);
+    image.classList.add('card-image');
+    let memberFoto = document.createElement('img');
+    memberFoto.src = myTeam[index].foto
+    image.appendChild(memberFoto);
+}
+
+// Creo una funzione per leggere il contenuto degli elementi nell'array
+// e aggiunmgere SOLO IL TESTO alle card da generare.
+
+function textGenerator(index, element) {
+    let text = document.createElement('div');
+    element.appendChild(text);
+    text.classList.add('card-text');
+    let memberName = document.createElement('h3');
+    memberName.innerText = myTeam[index].nome;
+    text.appendChild(memberName);
+    let memberRole = document.createElement('p');
+    memberRole.innerText = myTeam[index].ruolo;
+    text.appendChild(memberRole);
+}
+
+// genero un ciclo per avviare le funzioni e ripeterle in base alla quantità di
+// elementi presenti nell'array dei membri, dichiarando prima al suo interno
+// la creazione del div dentro cui scrivere che verrà stampato
+// ad ogni ciclo all'interno del container principale.
+
+function generateCard() {
+    for (let i = 0; i < myTeam.length; i++) {
+
+        let card = document.createElement('div');
+
+        mainCardGenerator(card);
+
+        imageGenerator(i, card);
+
+        textGenerator(i, card);
+
+    }
+}
+
 // dichiaro l'array di oggetti con i membri del team attualmente conosciuti.
+
 
 const myTeam = [
     {
@@ -48,36 +105,9 @@ const myTeam = [
     },
 ];
 
-// genero un ciclo per scorrere i valori degli oggeti nell'array ed assegnarli
-// ad una nuova card con i valori presenti nell'oggetto dell'array.
-
-console.log(myTeam.length);
-function generateCard() {
-    for (let i = 0; i < myTeam.length; i++) {
-        let card = document.createElement('div');
-        container.appendChild(card);
-        card.classList.add('team-card');
-        let image = document.createElement('div');
-        card.appendChild(image);
-        image.classList.add('card-image');
-        let memberFoto = document.createElement('img');
-        memberFoto.src = myTeam[i].foto
-        image.appendChild(memberFoto);
-        let text = document.createElement('div');
-        card.appendChild(text);
-        text.classList.add('card-text');
-        let memberName = document.createElement('h3');
-        memberName.innerText = myTeam[i].nome;
-        text.appendChild(memberName);
-        let memberRole = document.createElement('p');
-        memberRole.innerText = myTeam[i].ruolo;
-        text.appendChild(memberRole);
-    }
-}
-
 
 // aggiungo un evento al click del bottone del form per creare una nuova card
-// e creare un nuovo oggetto da aggiungere all'array di oggeti principali.
+// e creare un nuovo oggetto da aggiungere all'array di oggetti principali.
 
 addBtn.addEventListener('click', function () {
     let newName = document.getElementById('name').value;
@@ -95,7 +125,10 @@ addBtn.addEventListener('click', function () {
     container.innerText = '';
 
     generateCard();
-    /*
+    /*  
+    
+    // prima versione del codice, troppo lunga e di difficle lettura.
+
         let newCard = document.createElement('div');
         container.appendChild(newCard);
         newCard.classList.add('team-card');
@@ -118,6 +151,7 @@ addBtn.addEventListener('click', function () {
         let newMemberRole = document.createElement('p');
         newMemberRole.innerText = newRole;
         newText.appendChild(newMemberRole);
+
         */
 
     console.log(myTeam);
