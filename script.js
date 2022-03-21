@@ -2,6 +2,8 @@ console.log('JS OK');
 
 const container = document.querySelector('.team-container');
 
+const addBtn = document.getElementById('addMemberButton');
+
 const myTeam = [
     {
         nome: "Wayne Barnett",
@@ -64,3 +66,31 @@ for (let i = 0; i < myTeam.length; i++) {
 }
 
 
+addBtn.addEventListener('click', function () {
+    let newName = document.getElementById('name').value;
+    let newRole = document.getElementById('role').value;
+    let newImg = document.getElementById('image').value;
+
+    let newCard = document.createElement('div');
+    container.appendChild(newCard);
+    newCard.classList.add('team-card');
+
+    let newMemberImage = document.createElement('div');
+    newCard.appendChild(newMemberImage);
+    newMemberImage.classList.add('card-img');
+    let newFoto = document.createElement('img');
+    newFoto.src = newImg;
+    newMemberImage.appendChild(newFoto);
+
+    let newText = document.createElement('div');
+    newCard.appendChild(newText);
+    newText.classList.add('card-text');
+
+    let newMemberName = document.createElement('h3');
+    newMemberName.innerText = newName;
+    newText.appendChild(newMemberName);
+
+    let newMemberRole = document.createElement('p');
+    newMemberRole.innerText = newRole;
+    newText.appendChild(newMemberRole);
+})
