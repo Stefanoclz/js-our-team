@@ -19,9 +19,44 @@ const myTeam = [
         nome: "Wayne Barnett",
         ruolo: "Founder & CEO",
         foto: "",
-    }
-]
+    },
+
+    {
+        nome: "Angela Caroll",
+        ruolo: "Chief Editor",
+        foto: "",
+    },
+
+    {
+        nome: "Angela Lopez",
+        ruolo: "Social Media Manager",
+        foto: "",
+    },
+
+    {
+        nome: "Barbara Ramos",
+        ruolo: "Graphic Designer",
+        foto: "",
+    },
+
+    {
+        nome: "Scott Estrada",
+        ruolo: "Developer",
+        foto: "",
+    },
+
+    {
+        nome: "Walter Gordon",
+        ruolo: "Office Manager",
+        foto: "",
+    },
+];
+
+console.log(myTeam.length);
 
 for (let i = 0; i < myTeam.length; i++) {
     container.appendChild(card);
+    card.appendChild(image);
+    card.appendChild(text);
 }
+
